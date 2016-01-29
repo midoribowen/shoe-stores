@@ -29,18 +29,27 @@ public class Store {
     }
   }
   // TO-DO: all method for Store
-  //
-  // public static List<Store> all() {
-  //  
-  // }
-  //
+
+  public static List<Store> all() {
+   try(Connection con = DB.sql2o.open()) {
+     String sql = "SELECT id AS mId, name AS mName FROM stores";
+     return con.createQuery(sql).executeAndFetch(Store.class);
+   }
+  }
+
   // To-DO: save method for store
-  //
-  // public void save() {
-  //
-  // }
-  //
-  //
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO stores(name) VALUES (:name)";
+      this.mId = (int) con.createQuery(sql, true)
+                          .addParameter("name", this.mName)
+                          .executeUpdate()
+                          .getKey();
+    }
+  }
+
+
   // TO-DO: find method for store
   //
   //   public static Store find(int id) {
