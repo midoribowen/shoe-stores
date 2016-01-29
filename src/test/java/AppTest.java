@@ -37,14 +37,14 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Woodstock");
   }
 
-  // @Test
-  // public void brandAddedSuccessfully() {
-  //   goTo("http://localhost:4567/");
-  //   fill("#brand-name").with("Adidas");
-  //   submit(".new-brand");
-  //   click("a", withText("Brands"));
-  //   assertThat(pageSource()).contains("Adidas");
-  // }
+  @Test
+  public void brandAddedSuccessfully() {
+    goTo("http://localhost:4567/");
+    fill("#brand-name").with("Adidas");
+    submit(".new-brand");
+    goTo("http://localhost:4567/brands");
+    assertThat(pageSource()).contains("Adidas");
+  }
   //
   //   @Test
   //   public void displayAllStores() {

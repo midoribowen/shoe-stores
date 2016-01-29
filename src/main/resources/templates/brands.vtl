@@ -8,11 +8,7 @@
   <tbody>
     #foreach ($brand in $brands)
       <tr>
-        #if (null)
-          <td></td>
-        #else
           <td><a href="/brand/$brand.getId()">$brand.getName()</a></td>
-        #end
       </tr>
     #end
   </tbody>
