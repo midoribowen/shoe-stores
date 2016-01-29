@@ -51,12 +51,18 @@ public class Brand {
 
   //
   // TO-DO: find method for brand
-  //
-  //   public static Brand find(int id) {
-  //
-  // }
-  //
-  //
+
+  public static Brand find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id AS mId, name AS mName FROM brands WHERE id = :id";
+      Brand brand = con.createQuery(sql)
+                       .addParameter("id", id)
+                       .executeAndFetchFirst(Brand.class);
+      return brand;
+    }
+  }
+
+
   // // TO-DO: addStore method
   //
   // public void addStore(int storeId) {

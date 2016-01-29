@@ -24,12 +24,12 @@ public class BrandTest {
     assertEquals(Brand.all().size(), 0);
   }
 
-  // @Test
-  // public void brands_instatiatesName() {
-  //   Brand brand = new Brand("Nike");
-  //   brand.save();
-  //   assertEquals("Nike", Brand.find(brand.getId()).getName());
-  // }
+  @Test
+  public void brands_instatiatesNameAndFindsItInListOfBrands() {
+    Brand brand = new Brand("Nike");
+    brand.save();
+    assertEquals("Nike", Brand.find(brand.getId()).getName());
+  }
   //
   // @Test
   // public void getAllStores_ListsAllStoresThatCarryBrand() {
