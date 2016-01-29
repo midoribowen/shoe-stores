@@ -32,6 +32,21 @@ public class BrandTest {
   }
 
   @Test
+  public void deleteBrand_deletesABrandIdFromStoresBrandsJoinTable_Adidas() {
+    Store store = new Store("Foot Locker");
+    store.save();
+    Brand brand = new Brand("Nike");
+    brand.save();
+    Brand anotherBrand = new Brand("Adidas");
+    anotherBrand.save();
+    store.addBrand(brand.getId());
+    store.addBrand(anotherBrand.getId());
+    brand.removeBrand();
+    Brand[] brands = new Brand[] {anotherBrand};
+    assertTrue(store.getAllBrands().containsAll(Arrays.asList(brands)));
+  }
+
+  @Test
   public void getAllStores_ListsAllStoresThatCarryBrand() {
     Brand brand = new Brand("Nike");
     brand.save();

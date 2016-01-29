@@ -80,7 +80,6 @@ public class Store {
     }
   }
 
-
   // TO-DO: update(String name) method
 
   public void update(String newName) {

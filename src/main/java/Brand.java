@@ -62,6 +62,16 @@ public class Brand {
     }
   }
 
+  // TO-DO: removeBrand method to delete a brand id from join table (i.e. remove a brand from store's list of brands carried)
+
+  public void removeBrand() {
+    try(Connection con = DB.sql2o.open()) {
+      String sqlDeleteBrandConnection = "DELETE FROM stores_brands WHERE stores_brands.brand_id = :id";
+      con.createQuery(sqlDeleteBrandConnection)
+         .addParameter("id", mId)
+         .executeUpdate();
+    }
+  }
 
   // // TO-DO: addStore method
 

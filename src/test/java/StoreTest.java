@@ -32,7 +32,7 @@ public class StoreTest {
   }
 
   @Test
-  public void store_deletesAStoreAndInstanceOfStoreIdInStoresBrandsJoinTable_1_Sprint() {
+  public void delete_deletesAStoreAndInstanceOfStoreIdInStoresBrandsJoinTable_1_Sprint() {
     Store store = new Store("Foot Locker");
     store.save();
     Store anotherStore = new Store("Sprint");
@@ -48,7 +48,7 @@ public class StoreTest {
   }
 
   @Test
-  public void store_updateWorksProperly() {
+  public void update_updateWorksProperly() {
     Store store = new Store("Foot Locker");
     store.save();
     store.update("Sprint");
