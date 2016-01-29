@@ -63,11 +63,23 @@ public class Store {
   }
 
   // TO-DO: delete method for storeConnection & store
-  //
-  // public void delete() {
-  //
-  // }
-  //
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sqlDeleteStoreConnection = "DELETE FROM stores_brands WHERE stores_brands.store_id = :id";
+      con.createQuery(sqlDeleteStoreConnection)
+         .addParameter("id", mId)
+         .executeUpdate();
+    }
+
+    try(Connection con = DB.sql2o.open()) {
+      String sqlDeleteStore = "DELETE FROM stores WHERE id = :id";
+      con.createQuery(sqlDeleteStore)
+         .addParameter("id", mId)
+         .executeUpdate();
+    }
+  }
+
 
   // TO-DO: update(String name) method
   //

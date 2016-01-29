@@ -30,14 +30,15 @@ public class StoreTest {
     store.save();
     assertEquals("Foot Locker", Store.find(store.getId()).getName());
   }
-  //
-  // @Test
-  // public void store_deleteWorksProperly_0() {
-  //   Store store = new Store("Foot Locker");
-  //   store.save();
-  //   store.delete();
-  //   assertEquals(0, Store.all().size());
-  // }
+
+  @Test
+  public void store_deleteWorksProperly_0() {
+    Store store = new Store("Foot Locker");
+    store.save();
+    store.delete();
+    // TO DO: Add onto this test to test include storeConnection in stores_brands, after addStore & getAllStores methods are added to Brand class.
+    assertEquals(0, Store.all().size());
+  }
   //
   // @Test
   // public void store_updateWorksProperly() {
