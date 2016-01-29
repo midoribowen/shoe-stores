@@ -23,14 +23,14 @@ public class StoreTest {
   public void all_emptyAtFirst() {
     assertEquals(Store.all().size(), 0);
   }
+
+  @Test
+  public void store_instantiatesNameAndFindsItInListOfStores() {
+    Store store = new Store("Foot Locker");
+    store.save();
+    assertEquals("Foot Locker", Store.find(store.getId()).getName());
+  }
   //
-  // @Test
-  // public void stores_instatiatesName() {
-  //   Store store = new Store("Foot Locker");
-  //   store.save();
-  //   assertEquals("Foot Locker", Store.find(store.getId()).getName());
-  // }
-  // 
   // @Test
   // public void store_deleteWorksProperly_0() {
   //   Store store = new Store("Foot Locker");

@@ -51,11 +51,17 @@ public class Store {
 
 
   // TO-DO: find method for store
-  //
-  //   public static Store find(int id) {
-  //
-  // }
-  //
+
+  public static Store find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id AS mId, name AS mName FROM stores WHERE id = :id";
+      Store store = con.createQuery(sql)
+                       .addParameter("id", id)
+                       .executeAndFetchFirst(Store.class);
+      return store;
+    }
+  }
+
   // TO-DO: delete method for storeConnection & store
   //
   // public void delete() {
