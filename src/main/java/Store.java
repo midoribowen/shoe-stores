@@ -95,16 +95,30 @@ public class Store {
   }
 
   // // TO-DO: addBrand method
-  //
-  // public void addBrand(int brandId) {
-  //
-  // }
+
+  public void addBrand(int brandId) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO stores_brands (store_id, brand_id) VALUES (:storeId, :brandId)";
+      con.createQuery(sql)
+         .addParameter("storeId", this.getId())
+         .addParameter("brandId", brandId)
+         .executeUpdate();
+    }
+  }
 
   // TO-DO: getAllBrands method
-  //
-  // public List<Brand> getAllBrands() {
-  //
-  // }
+
+  public List<Brand> getAllBrands() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT brands.id AS mId, brands.name AS mName FROM brands " +
+                   "INNER JOIN stores_brands ON brands.id = stores_brands.brand_id " +
+                   "WHERE stores_brands.store_id = :id";
+      List<Brand> brandList = con.createQuery(sql)
+                                 .addParameter("id", mId)
+                                 .executeAndFetch(Brand.class);
+      return brandList;
+    }
+  }
 
 
 }

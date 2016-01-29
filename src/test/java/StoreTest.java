@@ -39,7 +39,7 @@ public class StoreTest {
     // TO DO: Add onto this test to test include storeConnection in stores_brands, after addStore & getAllStores methods are added to Brand class.
     assertEquals(0, Store.all().size());
   }
-  
+
   @Test
   public void store_updateWorksProperly() {
     Store store = new Store("Foot Locker");
@@ -48,21 +48,21 @@ public class StoreTest {
     assertEquals(store.getName(), "Sprint");
   }
 
-  // @Test
-  // public void getAllBrands_ListsAllBrandsCarriedByStore() {
-  //   Store store = new Store("Foot Locker");
-  //   store.save();
-  //   Brand firstBrand = new Brand("Nike");
-  //   firstBrand.save();
-  //   Brand secondBrand = new Brand("Adidas");
-  //   secondBrand.save();
-  //   Brand thirdBrand = new Brand("New Balance");
-  //   thirdBrand.save();
-  //   store.addStore(firstBrand.getId());
-  //   store.addStore(secondBrand.getId());
-  //   store.addStore(thirdBrand.getId());
-  //   Brand[] brands = new Brand[] {firstBrand, secondBrand, thirdBrand};
-  //   assertTrue(store.getAllBrands().containsAll(Arrays.asList(brands)));
-  // }
+  @Test
+  public void getAllBrands_ListsAllBrandsCarriedByStore() {
+    Store store = new Store("Foot Locker");
+    store.save();
+    Brand firstBrand = new Brand("Nike");
+    firstBrand.save();
+    Brand secondBrand = new Brand("Adidas");
+    secondBrand.save();
+    Brand thirdBrand = new Brand("New Balance");
+    thirdBrand.save();
+    store.addBrand(firstBrand.getId());
+    store.addBrand(secondBrand.getId());
+    store.addBrand(thirdBrand.getId());
+    Brand[] brands = new Brand[] {firstBrand, secondBrand, thirdBrand};
+    assertTrue(store.getAllBrands().containsAll(Arrays.asList(brands)));
+  }
 
 }
