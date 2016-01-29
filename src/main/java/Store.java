@@ -82,11 +82,18 @@ public class Store {
 
 
   // TO-DO: update(String name) method
-  //
-  // public void update(String name) {
-  //
-  // }
-  //
+
+  public void update(String newName) {
+    mName = newName;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stores SET name = :name WHERE id = :id";
+      con.createQuery(sql)
+         .addParameter("name", newName)
+         .addParameter("id", mId)
+         .executeUpdate();
+    }
+  }
+
   // // TO-DO: addBrand method
   //
   // public void addBrand(int brandId) {
