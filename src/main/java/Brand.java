@@ -29,17 +29,26 @@ public class Brand {
     }
   }
   // TO-DO: all method for Brand
-  //
-  // public static List<Brand> all() {
-  //
-  // }
-  //
+
+  public static List<Brand> all() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id AS mId, name AS mName FROM brands";
+      return con.createQuery(sql).executeAndFetch(Brand.class);
+    }
+  }
+
   // To-DO: save method for brand
-  //
-  // public void save() {
-  //
-  // }
-  //
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO brands (name) VALUES (:name)";
+      this.mId = (int) con.createQuery(sql, true)
+                          .addParameter("name", this.mName)
+                          .executeUpdate()
+                          .getKey();
+    }
+  }
+
   //
   // TO-DO: find method for brand
   //
