@@ -1,0 +1,19 @@
+<h4>All Brands</h4>
+<table class="table hover-table sortable" id="brands-table">
+  <thead>
+    <tr>
+      <th>Brand Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    #foreach ($brand in $brands)
+      <tr>
+        #if (null)
+          <td></td>
+        #else
+          <td><a href="/brand/$brand.getId()">$brand.getName()</a></td>
+        #end
+      </tr>
+    #end
+  </tbody>
+</table>

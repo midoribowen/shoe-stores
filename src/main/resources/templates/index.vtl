@@ -1,21 +1,8 @@
 <div class="row">
-  <!-- column of all shoe stores with links plus add new store post form-->
+  <!-- column of add new store post form-->
   <div class="col-md-5">
-    <h4>All Stores</h4>
-    <table class="table hover-table sortable" id="stores-table">
-      <thead>
-        <tr>
-          <th>Store Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        #foreach ($store in $stores)
-          <td><a href="/store/$store.getId()">$store.getName()</a></td>
-        #end
-      </tbody>
-    </table>
 
-    <form class="form-horizontal" action="/" method="post">
+    <form class="form-horizontal" action="/stores" method="post">
       <h4>Add a New Store</h4>
       <div class="form-group">
         <label for="store-name">Store Name</label>
@@ -25,22 +12,10 @@
     </form>
   </div>
 
-  <!-- column of all brands with links plus add new brand post form -->
+  <!-- column of add new brand post form -->
   <div class="col-md-5">
-    <h4>All Brands</h4>
-    <table class="table hover-table sortable" id="brands-table">
-      <thead>
-        <tr>
-          <th>Brand Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        #foreach ($brand in $brands)
-          <td><a href="/brand/$brand.getId()">$brand.getName()</a></td>
-        #end
-      </tbody>
-    </table>
-      <form class="form-horizontal" action="/" method="post">
+
+      <form class="form-horizontal" action="/brands" method="post">
         <h4>Add a New Brand</h4>
         <div class="form-group">
           <label for="brand-name">Brand Name</label>

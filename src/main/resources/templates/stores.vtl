@@ -1,0 +1,15 @@
+<h4>All Stores</h4>
+<table class="table hover-table sortable" id="stores-table">
+  <thead>
+    <tr>
+      <th>Store Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    #foreach ($store in $stores)
+      <tr>
+        <td><a href="/store/$store.getId()">$store.getName()</a></td>
+    </tr>
+    #end
+  </tbody>
+</table>
