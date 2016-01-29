@@ -45,17 +45,17 @@ public class AppTest extends FluentTest {
     goTo("http://localhost:4567/brands");
     assertThat(pageSource()).contains("Adidas");
   }
-  //
-  //   @Test
-  //   public void displayAllStores() {
-  //     Store firstStore = new Store("Foot Locker");
-  //     Store secondStore = new Store("Woodstock Shoes");
-  //     firstStore.save();
-  //     secondStore.save();
-  //     goTo("http://localhost:4567/stores");
-  //     assertThat(pageSource()).contains("Woodstock");
-  //     assertEquals(Store.all().size(), 2);
-  //   }
+  
+    @Test
+    public void displayAllStores() {
+      Store firstStore = new Store("Foot Locker");
+      Store secondStore = new Store("Woodstock Shoes");
+      firstStore.save();
+      secondStore.save();
+      goTo("http://localhost:4567/stores");
+      assertThat(pageSource()).contains("Woodstock");
+      assertEquals(Store.all().size(), 2);
+    }
   //
   //   @Test
   //   public void displayAllBrands() {
