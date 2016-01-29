@@ -32,12 +32,19 @@ public class StoreTest {
   }
 
   @Test
-  public void store_deleteWorksProperly_0() {
+  public void store_deletesAStoreAndInstanceOfStoreIdInStoresBrandsJoinTable_1_Sprint() {
     Store store = new Store("Foot Locker");
     store.save();
+    Store anotherStore = new Store("Sprint");
+    anotherStore.save();
+    Brand brand = new Brand("Nike");
+    brand.save();
+    brand.addStore(store.getId());
+    brand.addStore(anotherStore.getId());
     store.delete();
-    // TO DO: Add onto this test to test include storeConnection in stores_brands, after addStore & getAllStores methods are added to Brand class.
-    assertEquals(0, Store.all().size());
+    Store[] stores = new Store[] {anotherStore};
+    assertEquals(1, Store.all().size());
+    assertTrue(brand.getAllStores().containsAll(Arrays.asList(stores)));
   }
 
   @Test
