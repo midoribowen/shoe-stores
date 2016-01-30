@@ -40,10 +40,8 @@ public class App {
 // DELETE A STORE
 
     post("/stores/delete", (request, response) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
       Store store = Store.find(Integer.parseInt(request.queryParams("id")));
       store.delete();
-
       response.redirect("/stores");
       return null;
     });
@@ -61,7 +59,6 @@ public class App {
 // UPDATE STORE
 
     post("/store/:id", (request, response) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
       Store store = Store.find(Integer.parseInt(request.params("id")));
       String newName = request.queryParams("new-name");
       store.update(newName);
@@ -72,13 +69,8 @@ public class App {
 // ADD A BRAND TO STORE
 
     post("/store/:id/add-brand", (request, response) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
       Store store = Store.find(Integer.parseInt(request.queryParams("store-id")));
       store.addBrand(Integer.parseInt(request.queryParams("add-brand")));
-
-      // Store storeId = Store.find(Integer.parseInt(request.queryParams("store-id")));
-      // Brand brand = Brand.find(Integer.parseInt(request.queryParams("add-brand")));
-      // store.addBrand(brand);
       response.redirect("/store/" + store.getId());
       return null;
     });
@@ -107,11 +99,20 @@ public class App {
 
     get("/brand/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Store brand = Store.find(Integer.parseInt(request.params("id")));
-      model.put("brand", brand);
+      model.put("brand", Brand.find(Integer.parseInt(request.params(":id"))));
+      model.put("stores", Store.all());
       model.put("template", "templates/brand.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+// ADD A STORE TO A BRAND
+
+    post("/brand/:id/add-store", (request, response) -> {
+      Brand brand = Brand.find(Integer.parseInt(request.queryParams("brand-id")));
+      brand.addStore(Integer.parseInt(request.queryParams("add-store")));
+      response.redirect("/brand/" +brand.getId());
+      return null;
+    });
 
   }
 }
