@@ -1,6 +1,6 @@
 <h4>$store.getName()</h4>
 <hr>
-<!-- List of all brands carried at that store -->
+
 <table class="table hover-table sortable" id="brands-table">
   <thead>
     <tr>
@@ -15,7 +15,7 @@
     #end
   </tbody>
 </table>
-<!-- Add Brand to Store List Form -->
+
 <h5><u>Add a Brand to $store.getName()</u></h5>
     <form action="/store/$store.getId()/add-brand" method="post" class="form-horizontal">
       <input id="store-id" name="store-id" type="hidden" value="$store.getId()">
@@ -35,7 +35,7 @@
 
 
 
-<!-- Update Store Name Form: btn-warning -->
+
 <h5><u>Update Store</u></h5>
     <form action="/store/$store.getId()" method="post" class="form-horizontal">
       <input id="storeId" name="storeId" type="hidden" value="$store.getId()">

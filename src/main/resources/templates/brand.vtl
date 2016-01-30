@@ -1,7 +1,6 @@
-<!-- brand name in heading -->
 <h4>$brand.getName()</h4>
 <hr>
-<!-- list of all stores that carry brand -->
+
 <table class="table hover-table sortable" id="stores-table">
   <thead>
     <tr>
@@ -16,7 +15,7 @@
     #end
   </tbody>
 </table>
-<!-- Add Store to Brand List Form -->
+
 <h5><u>Add a Store to $brand.getName()</u></h5>
     <form action="/brand/$brand.getId()/add-store" method="post" class="form-horizontal">
       <input id="brand-id" name="brand-id" type="hidden" value="$brand.getId()">
