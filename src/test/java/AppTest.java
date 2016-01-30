@@ -116,4 +116,6 @@ public class AppTest extends FluentTest {
       assertThat(pageSource()).contains("Foot Locker");
     }
 
+    // TO-DO: Add test to remove a brand from a store
+
 }

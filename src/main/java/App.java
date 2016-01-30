@@ -75,6 +75,10 @@ public class App {
       return null;
     });
 
+
+// TO-DO Remove a brand from a store using Brand.removeBrand() method
+
+
 // READ ALL BRANDS
 
     get("/brands", (request, response) -> {
