@@ -52,10 +52,7 @@ public class App {
 
     get("/store/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Store store = Store.find(Integer.parseInt(request.params("id")));
-      model.put("store", Store);
-      model.put("brand", brand);
-      model.put("stores", Store.all());
+      model.put("store", Store.find(Integer.parseInt(request.params(":id"))));
       model.put("brands", Brand.all());
       model.put("template", "templates/store.vtl");
       return new ModelAndView(model, layout);
@@ -74,11 +71,14 @@ public class App {
 
 // ADD A BRAND TO STORE
 
-    post("/store/:id/new-brand", (request, response) -> {
+    post("/store/:id/add-brand", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Store store = Store.find(Integer.parseInt(request.params("id")));
-      Brand brand = new Brand(request.queryParams("name"));
-      store.addBrand(brand.getId());
+      Store store = Store.find(Integer.parseInt(request.queryParams("store-id")));
+      store.addBrand(Integer.parseInt(request.queryParams("add-brand")));
+
+      // Store storeId = Store.find(Integer.parseInt(request.queryParams("store-id")));
+      // Brand brand = Brand.find(Integer.parseInt(request.queryParams("add-brand")));
+      // store.addBrand(brand);
       response.redirect("/store/" + store.getId());
       return null;
     });

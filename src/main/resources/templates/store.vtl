@@ -17,11 +17,11 @@
 </table>
 <!-- Add Brand to Store List Form -->
 <h5><u>Add a Brand to $store.getName()</u></h5>
-    <form action="/store/$store.getId()/new-brand" method="post" class="form-horizontal">
-      <input id="storeId" name="storeId" type="hidden" value="$store.getId()">
+    <form action="/store/$store.getId()/add-brand" method="post" class="form-horizontal">
+      <input id="store-id" name="store-id" type="hidden" value="$store.getId()">
       <div class="form-group">
-        <label for="name">Select a Brand</label>
-        <select id="name" name="name" type="text">
+        <label for="add-brand">Select a Brand</label>
+        <select id="add-brand" name="add-brand" type="text">
           #foreach($brand in $brands)
             <option value="$brand.getId()">$brand.getName()</option>
           #end
