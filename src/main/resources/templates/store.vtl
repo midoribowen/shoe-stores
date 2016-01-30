@@ -16,14 +16,27 @@
   </tbody>
 </table>
 <!-- Add Brand to Store List Form -->
-
+<h5><u>Add a Brand to $store.getName()</u></h5>
+    <form action="/store/$store.getId()/new-brand" method="post" class="form-horizontal">
+      <input id="storeId" name="storeId" type="hidden" value="$store.getId()">
+      <div class="form-group">
+        <label for="name">Select a Brand</label>
+        <select id="name" name="name" type="text">
+          #foreach($brand in $brands)
+            <option value="$brand.getId()">$brand.getName()</option>
+          #end
+        </select>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success add-brand">Submit</button>
+    </form>
 
 <!-- Remove a Brand from this Store List -->
 
 
 
 <!-- Update Store Name Form: btn-warning -->
-<h5><u>Update A Store</u></h5>
+<h5><u>Update Store</u></h5>
     <form action="/store/$store.getId()" method="post" class="form-horizontal">
       <input id="storeId" name="storeId" type="hidden" value="$store.getId()">
       <div class="form-group">
@@ -33,4 +46,3 @@
       <br>
       <button type="submit" class="btn btn-warning update-store">Submit</button>
     </form>
-  </div>
