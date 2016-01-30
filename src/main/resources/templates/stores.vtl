@@ -1,5 +1,6 @@
 <h4>All Stores</h4>
-<table class="table hover-table sortable" id="stores-table">
+
+<table class="table hover-table sortable" id="brands-table">
   <thead>
     <tr>
       <th>Store Name</th>
@@ -8,8 +9,24 @@
   <tbody>
     #foreach ($store in $stores)
       <tr>
-        <td><a href="/store/$store.getId()">$store.getName()</a></td>
-    </tr>
+          <td><a href="/store/$store.getId()">$store.getName()</a></td>
+      </tr>
     #end
   </tbody>
 </table>
+<hr>
+<hr>
+
+<h5><u>Remove A Store</u></h5>
+    <form action="/stores/delete" method="post" class="form-horizontal">
+      <label for="id">Select a Store</label>
+      <select id="id" name="id" type="text" class="form-control">
+        #foreach($store in $stores)
+          <option value="$store.getId()">$store.getName()</option>
+        #end
+      </select>
+      <br>
+      <br>
+      <button type="submit" class="btn btn-danger delete-store">Submit</button>
+    </form>
+  </div>

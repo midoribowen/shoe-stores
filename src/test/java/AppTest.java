@@ -56,7 +56,7 @@ public class AppTest extends FluentTest {
       assertThat(pageSource()).contains("Woodstock");
       assertEquals(Store.all().size(), 2);
     }
-  
+
     @Test
     public void displayAllBrands() {
       Brand firstBrand = new Brand("Nike");
@@ -68,6 +68,28 @@ public class AppTest extends FluentTest {
       goTo("http://localhost:4567/brands");
       assertThat(pageSource()).contains("Adidas");
       assertEquals(Brand.all().size(), 3);
+    }
+
+    @Test
+    public void deleteStore() {
+      Store firstStore = new Store("Foot Locker");
+      Store secondStore = new Store("Woodstock Shoes");
+      firstStore.save();
+      secondStore.save();
+      goTo("http://localhost:4567/stores");
+      click("option", withText("Foot Locker"));
+      submit(".delete-store");
+      assertThat(!(pageSource()).contains("Foot Locker"));
+    }
+
+    @Test
+    public void updateStore() {
+      Store store = new Store("Foot Locker");
+      store.save();
+      goTo("http://localhost:4567/store/" + Integer.toString(store.getId()));
+      fill("#new-name").with("Woodstock Shoes");
+      submit(".update-store");
+      assertThat(pageSource()).contains("Woodstock Shoes");
     }
 
 }

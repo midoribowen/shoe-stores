@@ -1,9 +1,36 @@
-<!-- Store name heading -->
-
+<h4>$store.getName()</h4>
+<hr>
 <!-- List of all brands carried at that store -->
-
+<table class="table hover-table sortable" id="brands-table">
+  <thead>
+    <tr>
+      <th>Brands Carried</th>
+    </tr>
+  </thead>
+  <tbody>
+    #foreach ($brand in $store.getAllBrands())
+      <tr>
+          <td><a href="/brand/$brand.getId()">$brand.getName()</a></td>
+      </tr>
+    #end
+  </tbody>
+</table>
 <!-- Add Brand to Store List Form -->
 
-<!-- Update Store Name Form: btn-warning -->
 
-<!-- Delete Store Button: btn-danger -->
+<!-- Remove a Brand from this Store List -->
+
+
+
+<!-- Update Store Name Form: btn-warning -->
+<h5><u>Update A Store</u></h5>
+    <form action="/store/$store.getId()" method="post" class="form-horizontal">
+      <input id="storeId" name="storeId" type="hidden" value="$store.getId()">
+      <div class="form-group">
+        <label for="new-name">New Name</label>
+        <input id="new-name" name="new-name" type="text" class="form-control">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-warning update-store">Submit</button>
+    </form>
+  </div>

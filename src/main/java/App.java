@@ -17,6 +17,8 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+// READ ALL STORES
+
     get("/stores", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       model.put("stores", Store.all());
@@ -24,14 +26,51 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+// CREATE NEW STORE
+
     post("/stores", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Store store = new Store(request.queryParams("store-name"));
       store.save();
       model.put("store", store);
+      response.redirect("/");
+      return null;
+    });
+
+// DELETE A STORE
+
+    post("/stores/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Store store = Store.find(Integer.parseInt(request.queryParams("id")));
+      store.delete();
+
       response.redirect("/stores");
       return null;
     });
+
+// READ SINGULAR STORE
+
+    get("/store/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Store store = Store.find(Integer.parseInt(request.params("id")));
+      model.put("store", store);
+      model.put("stores", Store.all());
+      model.put("template", "templates/store.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+// UPDATE STORE
+
+    post("/store/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Store store = Store.find(Integer.parseInt(request.params("id")));
+      String newName = request.queryParams("new-name");
+      store.update(newName);
+      response.redirect("/store/" + store.getId());
+      return null;
+    });
+
+// READ ALL BRANDS
 
     get("/brands", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
@@ -40,14 +79,26 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+// CREATE BRAND
+
     post("/brands", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Brand brand = new Brand(request.queryParams("brand-name"));
       brand.save();
       model.put("brand", brand);
-      response.redirect("/brands");
+      response.redirect("/");
       return null;
     });
+
+// READ SINGULAR BRAND
+
+    get("/brand/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Store brand = Store.find(Integer.parseInt(request.params("id")));
+      model.put("brand", brand);
+      model.put("template", "templates/brand.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
   }
 }
